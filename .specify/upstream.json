@@ -1,0 +1,9 @@
+{
+  "repository": "https://github.com/github/spec-kit",
+  "commit": "a55782f1f1e7f2469cb204843c05d1a42fa2fae7",
+  "integration": "official source templates, command definitions and PowerShell helpers",
+  "cliInitialized": false,
+  "reason": "Python, uv and the Specify CLI were unavailable; templates and helpers are integrated directly.",
+  "feature": "001-tailor-inventory",
+  "license": "MIT; see .specify/LICENSE"
+}

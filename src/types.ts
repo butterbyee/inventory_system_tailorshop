@@ -1,0 +1,9 @@
+export type Role = 'admin' | 'staff' | 'viewer';
+export type Page = 'overview' | 'inventory' | 'movements' | 'suppliers' | 'reports' | 'settings';
+export type User = { id:number; name:string; email:string; role:Role; createdAt:string };
+export type Item = { id:number; sku:string; name:string; category:string; color:string; unit:string; quantity:number; reorderLevel:number; unitCost:number; location:string; supplierId:number|null; supplierName:string; notes:string; updatedAt:string; status:'In stock'|'Low stock'|'Out of stock' };
+export type Supplier = { id:number; name:string; contact:string; email:string; phone:string; address:string };
+export type Movement = { id:number; itemId:number; itemName:string; sku:string; category:string; unit:string; type:'opening'|'receive'|'issue'|'adjust'; quantity:number; delta:number; before:number; after:number; reference:string; reason:string; userName:string; createdAt:string };
+export type Workspace = { user:User; items:Item[]; movements:Movement[]; suppliers:Supplier[]; users:User[]; categories:string[]; units:string[] };
+export type DrawerState = { kind:'detail'; item:Item } | { kind:'item'; item?:Item } | { kind:'movement'; item?:Item; type?:'receive'|'issue'|'adjust' } | { kind:'supplier'; supplier?:Supplier } | { kind:'import' } | { kind:'user' } | null;
+export type ImportPreview = { rows: (Partial<Item>&{row:number})[]; errors:{row:number;message:string}[] };

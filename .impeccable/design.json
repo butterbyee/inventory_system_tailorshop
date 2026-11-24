@@ -1,0 +1,596 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-24T12:45:32.117Z",
+  "title": "Design System: Thread & Stock",
+  "extensions": {
+    "colorMeta": {
+      "brown": {
+        "role": "primary",
+        "displayName": "Stockroom Brown",
+        "tonalRamp": [
+          "oklch(15% 0.0214 54.2)",
+          "oklch(26% 0.0367 54.2)",
+          "oklch(38% 0.0519 54.2)",
+          "oklch(49% 0.0611 54.2)",
+          "oklch(61% 0.0611 54.2)",
+          "oklch(72% 0.0519 54.2)",
+          "oklch(84% 0.0367 54.2)",
+          "oklch(95% 0.0153 54.2)"
+        ]
+      },
+      "brown-hover": {
+        "role": "primary",
+        "displayName": "Deep Brown",
+        "tonalRamp": [
+          "oklch(15% 0.0177 53.9)",
+          "oklch(26% 0.0304 53.9)",
+          "oklch(38% 0.0431 53.9)",
+          "oklch(49% 0.0507 53.9)",
+          "oklch(61% 0.0507 53.9)",
+          "oklch(72% 0.0431 53.9)",
+          "oklch(84% 0.0304 53.9)",
+          "oklch(95% 0.0127 53.9)"
+        ]
+      },
+      "rail": {
+        "role": "primary",
+        "displayName": "Rail Brown",
+        "tonalRamp": [
+          "oklch(15% 0.0150 52.0)",
+          "oklch(26% 0.0258 52.0)",
+          "oklch(38% 0.0365 52.0)",
+          "oklch(49% 0.0430 52.0)",
+          "oklch(61% 0.0430 52.0)",
+          "oklch(72% 0.0365 52.0)",
+          "oklch(84% 0.0258 52.0)",
+          "oklch(95% 0.0107 52.0)"
+        ]
+      },
+      "nav-active": {
+        "role": "primary",
+        "displayName": "Selected Brown",
+        "tonalRamp": [
+          "oklch(15% 0.0233 58.8)",
+          "oklch(26% 0.0399 58.8)",
+          "oklch(38% 0.0565 58.8)",
+          "oklch(49% 0.0665 58.8)",
+          "oklch(61% 0.0665 58.8)",
+          "oklch(72% 0.0565 58.8)",
+          "oklch(84% 0.0399 58.8)",
+          "oklch(95% 0.0166 58.8)"
+        ]
+      },
+      "amber": {
+        "role": "secondary",
+        "displayName": "Movement Amber",
+        "tonalRamp": [
+          "oklch(15% 0.0420 79.8)",
+          "oklch(26% 0.0720 79.8)",
+          "oklch(38% 0.1020 79.8)",
+          "oklch(49% 0.1200 79.8)",
+          "oklch(61% 0.1200 79.8)",
+          "oklch(72% 0.1020 79.8)",
+          "oklch(84% 0.0720 79.8)",
+          "oklch(95% 0.0300 79.8)"
+        ]
+      },
+      "chart-received": {
+        "role": "secondary",
+        "displayName": "Received Brown",
+        "tonalRamp": [
+          "oklch(15% 0.0230 62.3)",
+          "oklch(26% 0.0394 62.3)",
+          "oklch(38% 0.0557 62.3)",
+          "oklch(49% 0.0656 62.3)",
+          "oklch(61% 0.0656 62.3)",
+          "oklch(72% 0.0557 62.3)",
+          "oklch(84% 0.0394 62.3)",
+          "oklch(95% 0.0164 62.3)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Warm Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0040 67.4)",
+          "oklch(26% 0.0069 67.4)",
+          "oklch(38% 0.0098 67.4)",
+          "oklch(49% 0.0115 67.4)",
+          "oklch(61% 0.0115 67.4)",
+          "oklch(72% 0.0098 67.4)",
+          "oklch(84% 0.0069 67.4)",
+          "oklch(95% 0.0029 67.4)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Taupe",
+        "tonalRamp": [
+          "oklch(15% 0.0076 67.3)",
+          "oklch(26% 0.0131 67.3)",
+          "oklch(38% 0.0185 67.3)",
+          "oklch(49% 0.0218 67.3)",
+          "oklch(61% 0.0218 67.3)",
+          "oklch(72% 0.0185 67.3)",
+          "oklch(84% 0.0131 67.3)",
+          "oklch(95% 0.0054 67.3)"
+        ]
+      },
+      "footer-ink": {
+        "role": "neutral",
+        "displayName": "Footer Taupe",
+        "tonalRamp": [
+          "oklch(15% 0.0103 72.8)",
+          "oklch(26% 0.0177 72.8)",
+          "oklch(38% 0.0251 72.8)",
+          "oklch(49% 0.0295 72.8)",
+          "oklch(61% 0.0295 72.8)",
+          "oklch(72% 0.0251 72.8)",
+          "oklch(84% 0.0177 72.8)",
+          "oklch(95% 0.0074 72.8)"
+        ]
+      },
+      "role-ink": {
+        "role": "neutral",
+        "displayName": "Role Taupe",
+        "tonalRamp": [
+          "oklch(15% 0.0155 71.6)",
+          "oklch(26% 0.0266 71.6)",
+          "oklch(38% 0.0377 71.6)",
+          "oklch(49% 0.0444 71.6)",
+          "oklch(61% 0.0444 71.6)",
+          "oklch(72% 0.0377 71.6)",
+          "oklch(84% 0.0266 71.6)",
+          "oklch(95% 0.0111 71.6)"
+        ]
+      },
+      "chart-ink": {
+        "role": "neutral",
+        "displayName": "Chart Taupe",
+        "tonalRamp": [
+          "oklch(15% 0.0088 69.5)",
+          "oklch(26% 0.0151 69.5)",
+          "oklch(38% 0.0214 69.5)",
+          "oklch(49% 0.0251 69.5)",
+          "oklch(61% 0.0251 69.5)",
+          "oklch(72% 0.0214 69.5)",
+          "oklch(84% 0.0151 69.5)",
+          "oklch(95% 0.0063 69.5)"
+        ]
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Daylight Canvas",
+        "tonalRamp": [
+          "oklch(15% 0.0020 84.6)",
+          "oklch(26% 0.0034 84.6)",
+          "oklch(38% 0.0049 84.6)",
+          "oklch(49% 0.0057 84.6)",
+          "oklch(61% 0.0057 84.6)",
+          "oklch(72% 0.0049 84.6)",
+          "oklch(84% 0.0034 84.6)",
+          "oklch(95% 0.0014 84.6)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "White Register",
+        "tonalRamp": [
+          "oklch(15% 0.0000 89.9)",
+          "oklch(26% 0.0000 89.9)",
+          "oklch(38% 0.0000 89.9)",
+          "oklch(49% 0.0000 89.9)",
+          "oklch(61% 0.0000 89.9)",
+          "oklch(72% 0.0000 89.9)",
+          "oklch(84% 0.0000 89.9)",
+          "oklch(95% 0.0000 89.9)"
+        ]
+      },
+      "surface-warm": {
+        "role": "neutral",
+        "displayName": "Warm White",
+        "tonalRamp": [
+          "oklch(15% 0.0019 95.1)",
+          "oklch(26% 0.0032 95.1)",
+          "oklch(38% 0.0046 95.1)",
+          "oklch(49% 0.0054 95.1)",
+          "oklch(61% 0.0054 95.1)",
+          "oklch(72% 0.0046 95.1)",
+          "oklch(84% 0.0032 95.1)",
+          "oklch(95% 0.0013 95.1)"
+        ]
+      },
+      "action-ink": {
+        "role": "neutral",
+        "displayName": "Action Cream",
+        "tonalRamp": [
+          "oklch(15% 0.0030 67.7)",
+          "oklch(26% 0.0051 67.7)",
+          "oklch(38% 0.0072 67.7)",
+          "oklch(49% 0.0085 67.7)",
+          "oklch(61% 0.0085 67.7)",
+          "oklch(72% 0.0072 67.7)",
+          "oklch(84% 0.0051 67.7)",
+          "oklch(95% 0.0021 67.7)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Warm Line",
+        "tonalRamp": [
+          "oklch(15% 0.0044 75.4)",
+          "oklch(26% 0.0076 75.4)",
+          "oklch(38% 0.0107 75.4)",
+          "oklch(49% 0.0126 75.4)",
+          "oklch(61% 0.0126 75.4)",
+          "oklch(72% 0.0107 75.4)",
+          "oklch(84% 0.0076 75.4)",
+          "oklch(95% 0.0032 75.4)"
+        ]
+      },
+      "soft": {
+        "role": "neutral",
+        "displayName": "Soft Linen",
+        "tonalRamp": [
+          "oklch(15% 0.0038 76.6)",
+          "oklch(26% 0.0065 76.6)",
+          "oklch(38% 0.0092 76.6)",
+          "oklch(49% 0.0108 76.6)",
+          "oklch(61% 0.0108 76.6)",
+          "oklch(72% 0.0092 76.6)",
+          "oklch(84% 0.0065 76.6)",
+          "oklch(95% 0.0027 76.6)"
+        ]
+      },
+      "positive": {
+        "role": "neutral",
+        "displayName": "Receipt Green",
+        "tonalRamp": [
+          "oklch(15% 0.0275 156.5)",
+          "oklch(26% 0.0471 156.5)",
+          "oklch(38% 0.0667 156.5)",
+          "oklch(49% 0.0784 156.5)",
+          "oklch(61% 0.0784 156.5)",
+          "oklch(72% 0.0667 156.5)",
+          "oklch(84% 0.0471 156.5)",
+          "oklch(95% 0.0196 156.5)"
+        ]
+      },
+      "negative": {
+        "role": "neutral",
+        "displayName": "Issue Red",
+        "tonalRamp": [
+          "oklch(15% 0.0420 28.5)",
+          "oklch(26% 0.0720 28.5)",
+          "oklch(38% 0.1020 28.5)",
+          "oklch(49% 0.1200 28.5)",
+          "oklch(61% 0.1200 28.5)",
+          "oklch(72% 0.1020 28.5)",
+          "oklch(84% 0.0720 28.5)",
+          "oklch(95% 0.0300 28.5)"
+        ]
+      },
+      "status-good-ink": {
+        "role": "neutral",
+        "displayName": "In-stock Green",
+        "tonalRamp": [
+          "oklch(15% 0.0259 154.6)",
+          "oklch(26% 0.0443 154.6)",
+          "oklch(38% 0.0628 154.6)",
+          "oklch(49% 0.0739 154.6)",
+          "oklch(61% 0.0739 154.6)",
+          "oklch(72% 0.0628 154.6)",
+          "oklch(84% 0.0443 154.6)",
+          "oklch(95% 0.0185 154.6)"
+        ]
+      },
+      "status-good-bg": {
+        "role": "neutral",
+        "displayName": "In-stock Wash",
+        "tonalRamp": [
+          "oklch(15% 0.0045 141.8)",
+          "oklch(26% 0.0078 141.8)",
+          "oklch(38% 0.0110 141.8)",
+          "oklch(49% 0.0129 141.8)",
+          "oklch(61% 0.0129 141.8)",
+          "oklch(72% 0.0110 141.8)",
+          "oklch(84% 0.0078 141.8)",
+          "oklch(95% 0.0032 141.8)"
+        ]
+      },
+      "status-low-ink": {
+        "role": "neutral",
+        "displayName": "Low-stock Amber",
+        "tonalRamp": [
+          "oklch(15% 0.0373 71.3)",
+          "oklch(26% 0.0640 71.3)",
+          "oklch(38% 0.0907 71.3)",
+          "oklch(49% 0.1067 71.3)",
+          "oklch(61% 0.1067 71.3)",
+          "oklch(72% 0.0907 71.3)",
+          "oklch(84% 0.0640 71.3)",
+          "oklch(95% 0.0267 71.3)"
+        ]
+      },
+      "status-low-bg": {
+        "role": "neutral",
+        "displayName": "Low-stock Wash",
+        "tonalRamp": [
+          "oklch(15% 0.0126 87.8)",
+          "oklch(26% 0.0217 87.8)",
+          "oklch(38% 0.0307 87.8)",
+          "oklch(49% 0.0361 87.8)",
+          "oklch(61% 0.0361 87.8)",
+          "oklch(72% 0.0307 87.8)",
+          "oklch(84% 0.0217 87.8)",
+          "oklch(95% 0.0090 87.8)"
+        ]
+      },
+      "status-out-bg": {
+        "role": "neutral",
+        "displayName": "Out-of-stock Wash",
+        "tonalRamp": [
+          "oklch(15% 0.0055 42.4)",
+          "oklch(26% 0.0094 42.4)",
+          "oklch(38% 0.0133 42.4)",
+          "oklch(49% 0.0157 42.4)",
+          "oklch(61% 0.0157 42.4)",
+          "oklch(72% 0.0133 42.4)",
+          "oklch(84% 0.0094 42.4)",
+          "oklch(95% 0.0039 42.4)"
+        ]
+      },
+      "balance-ink": {
+        "role": "neutral",
+        "displayName": "Balance Green",
+        "tonalRamp": [
+          "oklch(15% 0.0221 140.9)",
+          "oklch(26% 0.0379 140.9)",
+          "oklch(38% 0.0537 140.9)",
+          "oklch(49% 0.0632 140.9)",
+          "oklch(61% 0.0632 140.9)",
+          "oklch(72% 0.0537 140.9)",
+          "oklch(84% 0.0379 140.9)",
+          "oklch(95% 0.0158 140.9)"
+        ]
+      },
+      "balance-bg": {
+        "role": "neutral",
+        "displayName": "Balance Wash",
+        "tonalRamp": [
+          "oklch(15% 0.0049 124.6)",
+          "oklch(26% 0.0083 124.6)",
+          "oklch(38% 0.0118 124.6)",
+          "oklch(49% 0.0139 124.6)",
+          "oklch(61% 0.0139 124.6)",
+          "oklch(72% 0.0118 124.6)",
+          "oklch(84% 0.0083 124.6)",
+          "oklch(95% 0.0035 124.6)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Login Display",
+        "purpose": "Desktop sign-in story only."
+      },
+      "headline": {
+        "displayName": "Page Headline",
+        "purpose": "Workspace route titles with responsive size overrides."
+      },
+      "title": {
+        "displayName": "Panel Title",
+        "purpose": "Compact panel headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Base forms and interface text."
+      },
+      "label": {
+        "displayName": "Control Label",
+        "purpose": "Form labels and task buttons."
+      },
+      "register": {
+        "displayName": "Register",
+        "purpose": "Dense material and movement rows."
+      },
+      "table-heading": {
+        "displayName": "Table Heading",
+        "purpose": "Quiet register column labels."
+      }
+    },
+    "shadows": [
+      {
+        "name": "protected-drawer",
+        "value": "-12px 0 48px #3021141f",
+        "purpose": "Protected modal stock editing."
+      },
+      {
+        "name": "feedback-toast",
+        "value": "0 6px 24px #38281924",
+        "purpose": "Transient feedback over the workspace."
+      },
+      {
+        "name": "selected-movement",
+        "value": "0 2px 4px #4b301114",
+        "purpose": "Selected movement segment."
+      },
+      {
+        "name": "selected-role",
+        "value": "0 1px 4px #553c2d12",
+        "purpose": "Selected login demo role."
+      }
+    ],
+    "motion": [
+      {
+        "name": "button-background",
+        "value": "background 120ms ease",
+        "purpose": "Filled and bordered button hover."
+      },
+      {
+        "name": "drawer-entry",
+        "value": "drawer-in 200ms cubic-bezier(.16,1,.3,1)",
+        "purpose": "Drawer enters from translateX(30px), opacity .8, to its resting position."
+      },
+      {
+        "name": "mobile-rail",
+        "value": "transform 200ms cubic-bezier(.16,1,.3,1)",
+        "purpose": "Off-canvas navigation entry and exit."
+      },
+      {
+        "name": "busy-spin",
+        "value": "spin 1s linear infinite",
+        "purpose": "Loading indicators."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important",
+        "purpose": "Applied under prefers-reduced-motion: reduce."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide-workspace",
+        "value": "1500px"
+      },
+      {
+        "name": "compact-desktop",
+        "value": "1200px"
+      },
+      {
+        "name": "stacked-overview",
+        "value": "1050px"
+      },
+      {
+        "name": "mobile-shell",
+        "value": "760px"
+      },
+      {
+        "name": "narrow-mobile",
+        "value": "450px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The filled brown action for adding or recording stock.",
+      "html": "<button class=\"ds-primary\"><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 5v14m-7-7h14\"/></svg>Add material</button>",
+      "css": ".ds-primary{display:inline-flex;gap:8px;align-items:center;justify-content:center;min-height:38px;padding:8px 13px;border:1px solid #ddd4c8;border-radius:7px;font-family:'Geist Variable',system-ui,sans-serif;font-size:12px;font-weight:550;line-height:1.5;white-space:nowrap;cursor:pointer;transition:background 120ms ease;background:var(--brown,#6f4b33);border-color:var(--brown,#6f4b33);color:#fffaf5}.ds-primary:hover:not(:disabled){background:#5b3e2b;border-color:#5b3e2b}.ds-primary:focus-visible{outline:3px solid #ad803e;outline-offset:3px}.ds-primary:disabled{opacity:.5;cursor:not-allowed}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Bordered utility actions such as exports and cancellation.",
+      "html": "<button class=\"ds-secondary\">Export inventory</button>",
+      "css": ".ds-secondary{display:inline-flex;gap:8px;align-items:center;justify-content:center;min-height:38px;padding:8px 13px;border:1px solid #ddd4c8;border-radius:7px;font-family:'Geist Variable',system-ui,sans-serif;font-size:12px;font-weight:550;line-height:1.5;white-space:nowrap;cursor:pointer;transition:background 120ms ease;background:white;color:var(--ink,#302b26)}.ds-secondary:hover:not(:disabled){background:#f7f2ea;border-color:#c5b6a4}.ds-secondary:focus-visible{outline:3px solid #ad803e;outline-offset:3px}.ds-secondary:disabled{opacity:.5;cursor:not-allowed}"
+    },
+    {
+      "name": "Text Button",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "A quiet contextual action inside a panel.",
+      "html": "<button class=\"ds-text-button\">View all movements</button>",
+      "css": ".ds-text-button{display:inline-flex;gap:6px;align-items:center;background:none;border:0;padding:0;color:var(--brown,#6f4b33);font-family:'Geist Variable',system-ui,sans-serif;font-size:12px;font-weight:550;line-height:1.5;text-align:left;cursor:pointer}.ds-text-button:hover{text-decoration:underline;text-underline-offset:3px}.ds-text-button:focus-visible{outline:3px solid #ad803e;outline-offset:3px}"
+    },
+    {
+      "name": "Icon Button",
+      "kind": "button",
+      "refersTo": "button-icon",
+      "description": "A compact close, pagination, or utility control.",
+      "html": "<button class=\"ds-icon-button\" aria-label=\"Close panel\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"m18 6-12 12M6 6l12 12\"/></svg></button>",
+      "css": ".ds-icon-button{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:0;background:none;border-radius:6px;padding:0;color:#827263;cursor:pointer}.ds-icon-button:hover:not(:disabled){background:#f0eae2;color:var(--brown,#6f4b33)}.ds-icon-button:focus-visible{outline:3px solid #ad803e;outline-offset:3px}.ds-icon-button:disabled{opacity:.5;cursor:not-allowed}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "A labeled material field with its visible keyboard focus.",
+      "html": "<label class=\"ds-field\">Material name<input class=\"ds-field-input\" placeholder=\"e.g. Cotton twill\" /></label>",
+      "css": ".ds-field{display:flex;flex-direction:column;gap:7px;font-family:'Geist Variable',system-ui,sans-serif;font-size:12px;font-weight:550;line-height:1.5;color:#51463b;max-width:365px}.ds-field-input{height:40px;padding:0 12px;border:1px solid #dcd4ca;border-radius:7px;background:white;color:var(--ink,#302b26);font-family:'Geist Variable',system-ui,sans-serif;font-size:13px;font-weight:400;min-width:0;caret-color:var(--brown,#6f4b33)}.ds-field-input::placeholder{color:#81766b;opacity:1}.ds-field-input:focus-visible{outline:2px solid var(--focus,#976b2e);outline-offset:2px}"
+    },
+    {
+      "name": "Rail Navigation",
+      "kind": "nav",
+      "refersTo": "navigation-active",
+      "description": "Brown navigation with a warm selected item and amber icon.",
+      "html": "<nav class=\"ds-rail\" aria-label=\"Sample navigation\"><a class=\"ds-nav ds-nav-active\" href=\"#inventory\" aria-current=\"page\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m7.5 4.27 9 5.15M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z\"/><path d=\"m3.3 7 8.7 5 8.7-5M12 22V12\"/></svg><span>Inventory</span><span class=\"ds-nav-count\">7</span></a><a class=\"ds-nav\" href=\"#movements\">Stock movements</a></nav>",
+      "css": ".ds-rail{background:var(--rail,#553c2d);padding:12px;max-width:232px;display:flex;flex-direction:column;gap:5px;font-family:'Geist Variable',system-ui,sans-serif}.ds-nav{min-height:43px;padding:0 13px;display:flex;align-items:center;gap:11px;font-size:12px;line-height:1.5;color:#e2cdbb;border-radius:7px;text-decoration:none}.ds-nav:hover{background:#674b37;color:white}.ds-nav:focus-visible{outline:3px solid #ad803e;outline-offset:3px}.ds-nav-active{background:#815b3d;color:#fff6e9}.ds-nav-active>svg{color:#edc582}.ds-nav-count{margin-left:auto;font-size:10px;color:#f8e3ba;background:#976a41;min-width:21px;height:20px;border-radius:5px;display:grid;place-items:center}"
+    },
+    {
+      "name": "Stock Status",
+      "kind": "chip",
+      "refersTo": "status-low",
+      "description": "Text, colored dot, and pale surface express three stock states.",
+      "html": "<div class=\"ds-status-set\"><span class=\"ds-status ds-status-good\"><span></span>In stock</span><span class=\"ds-status ds-status-low\"><span></span>Low stock</span><span class=\"ds-status ds-status-out\"><span></span>Out of stock</span></div>",
+      "css": ".ds-status-set{display:flex;gap:8px;flex-wrap:wrap}.ds-status{display:inline-flex;align-items:center;gap:5px;padding:3px 7px;border-radius:5px;font-family:'Geist Variable',system-ui,sans-serif;font-size:9px;font-weight:500;line-height:1.5;white-space:nowrap}.ds-status>span{width:4px;height:4px;border-radius:50%;background:currentColor}.ds-status-good{color:#356647;background:#ecf3eb}.ds-status-low{color:#926014;background:#fbf0d6}.ds-status-out{color:var(--negative,#a1463c);background:#f9ece7}"
+    },
+    {
+      "name": "Register Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Flat white table surface with warm borders and compact records.",
+      "html": "<section class=\"ds-panel\"><div class=\"ds-panel-heading\"><div><h2>Material inventory</h2><p>Every fabric, thread, and finishing touch in one place.</p></div></div><div class=\"ds-register-scroll\"><table class=\"ds-register\"><thead><tr><th>Material</th><th class=\"ds-number\">On hand</th></tr></thead><tbody><tr><td><strong>Cotton twill</strong><small>FAB-009 / Sand</small></td><td class=\"ds-number\"><strong>42.5</strong> m</td></tr></tbody></table></div></section>",
+      "css": ".ds-panel{background:white;border:1px solid var(--line,#e8e2da);border-radius:var(--radius,12px);overflow:hidden;color:var(--ink,#302b26);font-family:'Geist Variable',system-ui,sans-serif;line-height:1.5}.ds-panel-heading{padding:20px 23px}.ds-panel-heading h2{font-size:15px;line-height:1.4;font-weight:640;letter-spacing:-.015em;margin:0}.ds-panel-heading p{font-size:10.5px;color:var(--muted,#766b60);margin:4px 0 0}.ds-register-scroll{overflow-x:auto}.ds-register{border-collapse:collapse;width:100%;text-align:left;font-size:11px}.ds-register th{font-size:10px;font-weight:500;color:var(--muted,#766b60);padding:12px 22px;background:#fcfaf7;border-top:1px solid var(--line,#e8e2da);border-bottom:1px solid var(--line,#e8e2da);white-space:nowrap}.ds-register td{padding:15px 22px}.ds-register tbody tr:hover{background:#fdfbf8}.ds-register strong{font-weight:550}.ds-register small{display:block;color:var(--muted,#766b60);font-size:9px;margin-top:3px}.ds-number{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}"
+    },
+    {
+      "name": "Live After-balance",
+      "kind": "custom",
+      "refersTo": "balance-preview",
+      "description": "The stock action preview keeps the calculated balance beside its unit.",
+      "html": "<div class=\"ds-balance\" aria-live=\"polite\"><span>Balance after issue</span><strong>9.25 <small>m</small></strong></div>",
+      "css": ".ds-balance{background:#eff3e9;color:#4b6846;padding:17px 19px;border-radius:8px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:'Geist Variable',system-ui,sans-serif;line-height:1.5}.ds-balance>span{font-size:11px}.ds-balance>strong{font-size:21px;font-weight:600;font-variant-numeric:tabular-nums}.ds-balance small{font-size:11px;font-weight:400}.ds-balance-invalid{background:#f8eae2;color:var(--negative,#a1463c)}.ds-balance>p{font-size:10px;width:100%}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Organized Stockroom",
+    "overview": "The administrative workspace is designed for a daylit tailor-shop desk: a brown navigation rail anchors a warm light workspace, white registers hold the records, and amber gives selected navigation details and movement charts their familiar warmth. Fine borders and compact Geist typography keep materials, quantities, units, and job references easy to scan.\n\nThis is a working stockroom, with the visual weight on finding a record and completing an accurate stock action. Repeated panels, aligned columns, quiet status labels, and a protected editing drawer carry the system across inventory, movements, suppliers, reports, and settings. Thread & Stock remains a provisional demo name; there is no received business logo or shipping raster imagery to extend into a brand system.",
+    "keyCharacteristics": [
+      "Brown administrative navigation around a warm light work area.",
+      "Compact white registers with fine warm borders and right-aligned quantities.",
+      "One self-hosted workhorse type family, with tabular numerals for stock and money.",
+      "Meaningful state color, explicit units, and a live after-balance in movement forms.",
+      "Flat surfaces at rest, with elevation reserved for protected editing and feedback."
+    ],
+    "rules": [
+      {
+        "name": "The Working Color Rule",
+        "body": "Keep the rail brown, the working canvas light, and the registers white; use state color to communicate stock meaning.",
+        "section": "colors"
+      },
+      {
+        "name": "The Paired Status Rule",
+        "body": "Show status text with its dot and pale background, and pair colored quantities with a sign or an explicit unit so color is never the only signal.",
+        "section": "colors"
+      },
+      {
+        "name": "The Stock Number Rule",
+        "body": "Right-align register quantities, retain tabular numerals, and keep units visible wherever a quantity can drive an action.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Register Rule",
+        "body": "Keep ordinary panels and tables flat; reserve shadows for the protected drawer, transient feedback, and the existing selected segments.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do preserve the brown rail, warm light canvas, white registers, and compact Geist hierarchy.",
+      "Do keep quantities right-aligned with tabular numerals and explicit units.",
+      "Do use fine warm borders and tonal groups to organize ordinary working surfaces.",
+      "Do keep the live after-balance and job or purchase reference close to the quantity action.",
+      "Do preserve visible focus, semantic status text, reduced-motion behavior, and mobile table scrolling.",
+      "Do use the final small-text foreground tokens rather than the superseded lighter declarations."
+    ],
+    "donts": [
+      "Don't add texture, raster decoration, or ornamental material simulation to this administrative world.",
+      "Don't use green, amber, or red as an arbitrary decorative status signal.",
+      "Don't give ordinary register panels the drawer or toast shadow.",
+      "Don't detach an actionable quantity from its unit or substitute color for its status text.",
+      "Don't add kickers or eyebrows above headings; let the heading carry its own hierarchy."
+    ]
+  }
+}
