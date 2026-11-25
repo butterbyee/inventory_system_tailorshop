@@ -1,6 +1,6 @@
 # Tailor shop workspace
 
-Mode: Operate. Scope: login and all inventory workspace routes. Primary target: src/App.tsx.
+Mode: Operate. Scope: login and all inventory workspace routes. Primary target: admin/frontend/src/App.tsx.
 
 ## Direction contract
 
@@ -14,7 +14,7 @@ FIRST VIEWPORT: Fixed 232px brown sidebar at desktop; slim workspace/date/accoun
 
 FORM: Existing tailor shop administrative design. Preserve its established palette and navigation. Code-first because this is an app screen. No approved image comp; seed:2323ac0efcb13c62.
 
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, docs/DESIGN.md, and every shipping raster carrying its provenance
 
 Open: original Excel sheet/column mapping. The current template is provisional.
 

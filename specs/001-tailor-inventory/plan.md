@@ -25,13 +25,15 @@ Workbook limitation documented; local-only enforced; transaction invariants test
 ## Project Structure
 
 ```text
-src/                 React interface, typed API models, styles
-server/              Express API, SQLite schema/seed, spreadsheet services
+admin/frontend/src/  React interface, typed API models, styles
+admin/frontend/tests/ Browser workflows
+admin/backend/src/   Express API, SQLite schema/seed, spreadsheet services
+admin/backend/tests/ API integration and database tests
+admin/backend/data/  Ignored local SQLite runtime files
+docs/                Product context and design system
 scripts/dev.mjs      local frontend/backend launcher
-tests/               API integration and browser workflows
 .specify/            official upstream templates/scripts and constitution
 specs/001-tailor-inventory/ specification, plan, data model, contracts, tasks
-data/                ignored local SQLite runtime files
 ```
 
 ## Implementation Decisions

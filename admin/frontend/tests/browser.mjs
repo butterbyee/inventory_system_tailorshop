@@ -1,20 +1,25 @@
 import { chromium } from 'playwright';
-import { createApp } from '../server/app.js';
+import { createApp } from '../../backend/src/app.js';
 import { mkdirSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
 import ExcelJS from 'exceljs';
 
 const {app,db}=createApp({databasePath:':memory:'});
 const server=app.listen(0,'127.0.0.1');await new Promise(resolve=>server.once('listening',resolve));
 const base=`http://127.0.0.1:${server.address().port}`;
-mkdirSync('.impeccable/review',{recursive:true});
+const reviewDirectory=fileURLToPath(new URL('../../../.impeccable/review/',import.meta.url));
+const resultsDirectory=fileURLToPath(new URL('../test-results/',import.meta.url));
+mkdirSync(reviewDirectory,{recursive:true});
+mkdirSync(resultsDirectory,{recursive:true});
 let browser;
 const errors=[],checks=[];
 try {
   browser=await chromium.launch({executablePath:process.env.CHROME_PATH || 'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true,args:['--disable-gpu']});
   const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
   const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
-  async function capture(name){if(process.env.SKIP_CAPTURES)return;const dismiss=page.getByRole('button',{name:'Dismiss notification'});if(await dismiss.count()){if(await page.getByRole('dialog').count())await page.locator('.toast').waitFor({state:'hidden',timeout:7000});else await dismiss.click();}await page.evaluate(()=>document.fonts.ready);await page.evaluate(()=>window.scrollTo(0,0));await page.screenshot({path:`.impeccable/review/${name}.png`,fullPage:(await page.getByRole('dialog').count())===0});}
+  async function capture(name){if(process.env.SKIP_CAPTURES)return;const dismiss=page.getByRole('button',{name:'Dismiss notification'});if(await dismiss.count()){if(await page.getByRole('dialog').count())await page.locator('.toast').waitFor({state:'hidden',timeout:7000});else await dismiss.click();}await page.evaluate(()=>document.fonts.ready);await page.evaluate(()=>window.scrollTo(0,0));await page.screenshot({path:join(reviewDirectory,`${name}.png`),fullPage:(await page.getByRole('dialog').count())===0});}
   async function navigate(route){await page.goto(`${base}/#${route}`);await page.getByRole('heading',{level:1}).waitFor();await page.evaluate(()=>document.fonts.ready);}
   await page.goto(base);await page.getByRole('button',{name:'Sign in to workspace'}).waitFor();await capture('login-desktop');
   await page.getByRole('button',{name:'Sign in to workspace'}).click();await page.getByRole('heading',{name:'Stockroom overview'}).waitFor();
@@ -43,8 +48,8 @@ try {
   await page.getByRole('button',{name:'Browser test linen',exact:true}).click();await page.getByRole('button',{name:'Edit material',exact:true}).click();await dialog.getByLabel('Material name',{exact:true}).fill('Browser test linen edited');await dialog.getByRole('button',{name:'Save material',exact:true}).click();await page.getByRole('status').filter({hasText:'Material details updated'}).waitFor();
   await navigate('suppliers');await page.getByRole('button',{name:'Add supplier',exact:true}).click();await dialog.getByLabel('Supplier name').fill('Browser test supplier');await dialog.getByLabel('Contact person').fill('QA contact');await dialog.getByRole('button',{name:'Add supplier',exact:true}).click();await page.getByRole('status').filter({hasText:'Supplier added'}).waitFor();
   await navigate('settings');await page.getByRole('button',{name:'Add account'}).click();await dialog.getByLabel('Full name').fill('Browser test viewer');await dialog.getByLabel('Email address').fill('browserviewer@example.com');await dialog.getByLabel('Initial password').fill('Password123!');await dialog.getByLabel('Access level').selectOption('viewer');await dialog.getByRole('button',{name:'Create account'}).click();await page.getByRole('status').filter({hasText:'Team account created'}).waitFor();checks.push('Material editing, supplier creation and team account creation.');
-  await navigate('inventory');await page.getByRole('button',{name:'Import',exact:true}).click();const [templateDownload]=await Promise.all([page.waitForEvent('download'),dialog.getByRole('button',{name:'Download Excel template'}).click()]);await templateDownload.saveAs('test-results/import-template.xlsx');
-  const book=new ExcelJS.Workbook();await book.xlsx.readFile('test-results/import-template.xlsx');book.getWorksheet('Inventory').getCell('A2').value='QA-IMPORT-001';book.getWorksheet('Inventory').getCell('B2').value='Browser imported cotton';
+  await navigate('inventory');await page.getByRole('button',{name:'Import',exact:true}).click();const [templateDownload]=await Promise.all([page.waitForEvent('download'),dialog.getByRole('button',{name:'Download Excel template'}).click()]);await templateDownload.saveAs(join(resultsDirectory,'import-template.xlsx'));
+  const book=new ExcelJS.Workbook();await book.xlsx.readFile(join(resultsDirectory,'import-template.xlsx'));book.getWorksheet('Inventory').getCell('A2').value='QA-IMPORT-001';book.getWorksheet('Inventory').getCell('B2').value='Browser imported cotton';
   await dialog.getByLabel('Choose Excel workbook').setInputFiles({name:'import.xlsx',mimeType:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',buffer:Buffer.from(await book.xlsx.writeBuffer())});await dialog.getByRole('button',{name:'Preview workbook'}).click();await dialog.getByRole('heading',{name:'1 valid material',exact:true}).waitFor();await dialog.getByRole('button',{name:'Import 1 materials'}).click();await page.getByRole('status').filter({hasText:'1 materials imported'}).waitFor();
   const [inventoryDownload]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Export',exact:true}).click()]);assert.match(inventoryDownload.suggestedFilename(),/inventory.xlsx/);checks.push('Template download, XLSX upload, preview, confirmation, inventory download.');
   // Only this in-memory QA database is cleaned; the user's local database is never opened here.
@@ -63,6 +68,6 @@ try {
   await page.getByRole('button',{name:'Open navigation'}).click();await page.getByRole('button',{name:'Sign out'}).click();await page.getByRole('button',{name:'Sign in to workspace'}).waitFor();await capture('login-mobile');
   await page.getByRole('button',{name:'Viewer',exact:true}).click();await page.getByRole('button',{name:'Sign in to workspace'}).click();await page.getByRole('heading',{level:1}).waitFor();await navigate('inventory');assert.equal(await page.getByRole('button',{name:'Add material',exact:true}).count(),0);assert.equal(await page.getByRole('button',{name:'Import',exact:true}).count(),0);checks.push('Viewer account can browse; write controls stay unavailable.');
   assert.deepEqual(errors,[]);checks.push('No browser JavaScript errors.');
-  writeFileSync('.impeccable/review/browser-results.json',JSON.stringify({checks,errors},null,2));
+  writeFileSync(join(reviewDirectory,'browser-results.json'),JSON.stringify({checks,errors},null,2));
   console.log(checks.map(s=>`PASS ${s}`).join('\n'));
 } finally { if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));db.close(); }

@@ -2,6 +2,9 @@ import { DatabaseSync } from 'node:sqlite';
 import { randomBytes, scryptSync, timingSafeEqual } from 'node:crypto';
 import { mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+export const defaultDatabasePath = fileURLToPath(new URL('../data/inventory.sqlite', import.meta.url));
 
 export const categories = ['Fabrics', 'Threads', 'Trims & notions', 'Tools & equipment', 'Packaging'];
 export const units = ['meter', 'piece', 'cone', 'spool', 'pack', 'roll', 'set'];
@@ -19,7 +22,7 @@ export function transaction(db, fn) {
   try { const result = fn(); db.exec('COMMIT'); return result; }
   catch (error) { db.exec('ROLLBACK'); throw error; }
 }
-export function createDatabase(path = 'data/inventory.sqlite') {
+export function createDatabase(path = defaultDatabasePath) {
   if (path !== ':memory:') mkdirSync(dirname(path), { recursive: true });
   const db = new DatabaseSync(path);
   db.exec(`

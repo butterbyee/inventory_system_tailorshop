@@ -4,8 +4,8 @@ import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import ExcelJS from 'exceljs';
-import { createApp } from '../server/app.js';
-import { createDatabase } from '../server/db.js';
+import { createApp } from '../src/app.js';
+import { createDatabase } from '../src/db.js';
 
 let db,server,base,admin,staff,viewer;
 async function request(path,{body,method=body?'POST':'GET',cookie=admin,headers={}}={}) {

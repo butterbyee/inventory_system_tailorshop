@@ -4,15 +4,17 @@ import cookieParser from 'cookie-parser';
 import multer from 'multer';
 import { randomBytes, createHash } from 'node:crypto';
 import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { existsSync } from 'node:fs';
 import { z } from 'zod';
-import { createDatabase, getItems, getMovements, publicUser, verifyPassword, hashPassword, transaction, categories, units } from './db.js';
+import { createDatabase, defaultDatabasePath, getItems, getMovements, publicUser, verifyPassword, hashPassword, transaction, categories, units } from './db.js';
 import { itemSchema, supplierSchema, userSchema, movementSchema, parse, fail, text } from './validation.js';
 import { inventoryBook, movementBook, previewImport, insertItem, commitImport } from './spreadsheets.js';
 
 const tokenHash=value=>createHash('sha256').update(value).digest('hex');
 const cookieOptions={httpOnly:true,sameSite:'strict',secure:false,path:'/'};
-export function createApp({databasePath=process.env.DATABASE_PATH || 'data/inventory.sqlite'}={}) {
+const frontendDist=fileURLToPath(new URL('../../frontend/dist/',import.meta.url));
+export function createApp({databasePath=process.env.DATABASE_PATH || defaultDatabasePath}={}) {
   const db=createDatabase(databasePath), app=express();
   app.disable('x-powered-by');
   app.use(helmet({contentSecurityPolicy:{directives:{defaultSrc:["'self'"],scriptSrc:["'self'"],styleSrc:["'self'","'unsafe-inline'"],fontSrc:["'self'"],imgSrc:["'self'","data:"],connectSrc:["'self'"],upgradeInsecureRequests:null}},strictTransportSecurity:false}));
@@ -147,9 +149,9 @@ export function createApp({databasePath=process.env.DATABASE_PATH || 'data/inven
     res.status(201).json({count:ids.length});
   });
   app.use('/api',(req,res)=>res.status(404).json({error:'This API endpoint does not exist.'}));
-  if(existsSync(resolve('dist/index.html'))) {
-    app.use(express.static(resolve('dist')));
-    app.get('/{*path}',(req,res)=>res.sendFile(resolve('dist/index.html')));
+  if(existsSync(resolve(frontendDist,'index.html'))) {
+    app.use(express.static(frontendDist));
+    app.get('/{*path}',(req,res)=>res.sendFile(resolve(frontendDist,'index.html')));
   }
   app.use((error,req,res,next)=> {
     if(res.headersSent) return next(error);

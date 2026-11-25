@@ -2,6 +2,37 @@
 
 A local inventory system for a tailor shop, with fictional materials and accounts. Built with a brown/amber administrative interface and the impeccable design workflow. The application runs on localhost; publishing its source to GitHub does not deploy the website.
 
+## Repository layout
+
+The web application follows the `admin/frontend` and `admin/backend` organization used by [SMaRT-PDM](https://github.com/mcartv/SMaRT-PDM). npm workspaces share one root install and lockfile.
+
+```text
+Inventory System/
+|-- admin/
+|   |-- frontend/
+|   |   |-- src/              # React interface and styles
+|   |   |-- tests/            # Browser workflows
+|   |   |-- index.html        # Web entry point
+|   |   |-- vite.config.ts
+|   |   |-- tsconfig.json
+|   |   |-- package.json
+|   |   |-- dist/             # Ignored production build
+|   |   `-- test-results/     # Ignored browser downloads
+|   `-- backend/
+|       |-- src/              # Express API, SQLite and spreadsheets
+|       |-- tests/            # API and database integration tests
+|       |-- data/             # Ignored local SQLite files
+|       `-- package.json
+|-- docs/                     # Product context and design system
+|-- scripts/                  # Shared development launcher
+|-- specs/                    # Feature specifications and contracts
+|-- .specify/                 # Spec Kit configuration and templates
+|-- .impeccable/              # Design metadata and ignored QA captures
+|-- package.json              # Workspace commands
+|-- package-lock.json         # Shared dependency lockfile
+`-- README.md
+```
+
 ## Run locally
 
 Install Node.js 24.13 or newer. This project was verified with Node 26.13. In PowerShell:
@@ -15,6 +46,18 @@ npm.cmd run dev
 Open **http://127.0.0.1:5173** (or **http://localhost:5173**). Both frontend and backend bind to loopback; they are not exposed on the local network. `npm.cmd` avoids PowerShell execution-policy restrictions on `npm.ps1`.
 
 The API runs at http://127.0.0.1:3001 and Vite proxies `/api` to it. Stop both with Ctrl+C.
+
+The root commands remain the same. To run either part separately after installing from the root, use two terminals:
+
+```powershell
+cd admin/backend
+npm.cmd run dev
+```
+
+```powershell
+cd admin/frontend
+npm.cmd run dev
+```
 
 To run the compiled site locally on a single port:
 
@@ -48,7 +91,7 @@ The login screen lets you choose a demo account and fills its credentials. All s
 
 SQLite is a good starting point for one shop working on one computer. If you later require multiple branches or many concurrent remote users, PostgreSQL is the recommended migration. No cloud database or paid service is required for this local version.
 
-Data is saved in **`data/inventory.sqlite`**, with related `-wal` and `-shm` files while running. The first start seeds 24 material SKUs, 4 suppliers, 120 movement records, and 3 accounts. Subsequent starts preserve edits. Runtime data and `.env` files are ignored by version control. For a backup, stop the app first and copy the `data` directory; do not copy only the database while it is being written.
+Data is saved in **`admin/backend/data/inventory.sqlite`**, with related `-wal` and `-shm` files while running. This default path is resolved from the backend source location, so starting from a different directory still uses the same database. The first start seeds 24 material SKUs, 4 suppliers, 120 movement records, and 3 accounts. Subsequent starts preserve edits. Runtime data and `.env` files are ignored by version control. For a backup, stop the app first and copy the `admin/backend/data` directory; do not copy only the database while it is being written.
 
 Quantities are stored as integer thousandths and costs as integer centavos to avoid floating-point balance drift. Fabrics measured in meters accept up to three decimal places. Pieces, cones, spools, packs, rolls and sets use whole numbers. Each material has its own stock unit. To track a roll by length, use `meter` and record its width/roll details in notes.
 
@@ -96,8 +139,8 @@ This environment did not have Python/uv/Specify CLI, so integration uses the off
 
 - Constitution: `.specify/memory/constitution.md`
 - Feature artifacts: `specs/001-tailor-inventory/`
-- Product context: `PRODUCT.md`
-- Built design system: `DESIGN.md` and `.impeccable/design.json`
+- Product context: [`docs/PRODUCT.md`](docs/PRODUCT.md)
+- Built design system: [`docs/DESIGN.md`](docs/DESIGN.md) and `.impeccable/design.json`
 
 The application source is self-contained. GitHub Spec Kit development references stay ignored under `.references/`.
 
@@ -110,4 +153,4 @@ npm.cmd run build
 npm.cmd run test:ui
 ```
 
-API tests use isolated databases, including temporary SQLite persistence checks. Browser tests use an in-memory database and installed Chrome; they do not touch the user's inventory. `CHROME_PATH` can override the browser executable for another machine. Build before browser tests because they verify the compiled app. Screenshots and browser results are under `.impeccable/review/` and are ignored.
+API tests use isolated databases, including temporary SQLite persistence checks. Browser tests use an in-memory database and installed Chrome; they do not touch the user's inventory. `CHROME_PATH` can override the browser executable for another machine. Build before browser tests because they verify the compiled app. Screenshots and browser reports are under `.impeccable/review/`; downloaded workbooks are under `admin/frontend/test-results/`. Both are ignored.

@@ -2,6 +2,17 @@
 
 Date: 2026-11-24. Scope: provisional local application; original workbook mapping remains pending receipt of the source file.
 
+## Folder reorganization — 2026-11-25
+
+The application now uses `admin/frontend` and `admin/backend` npm workspaces, following the reference repository's web application layout. Product and design documents are in `docs/`. Root development, build, start, type-check and test commands delegate to the appropriate workspace.
+
+- Moved all three existing SQLite files to `admin/backend/data/` and verified matching SHA256 hashes immediately after the move.
+- `npm.cmd install --offline --ignore-scripts --no-audit --no-fund`: passed; created the two workspace links and updated the shared lockfile without changing dependency versions.
+- `npm.cmd run check`, `npm.cmd run build`, and `npm.cmd test`: passed; all 10 API/database integration tests passed.
+- `npm.cmd run test:ui`: passed all existing desktop and mobile workflows, including workbook downloads from the relocated test directory.
+- Isolated smoke checks passed for the root development launcher, both local servers, the frontend `/api` proxy, and production pages/assets served with an unrelated working directory.
+- The relocated SQLite files, production build, and browser downloads remain ignored by Git.
+
 ## Automated checks
 
 - `npm.cmd run check`: passed TypeScript validation.
@@ -24,13 +35,13 @@ QA captures and reports are ignored under `.impeccable/review/`. There are no sh
 
 | Requirement | Implementation / evidence |
 | --- | --- |
-| FR-001 local persistence | server/db.js schema and persistence test |
-| FR-002 session authentication | server/app.js, salted scrypt hashes, auth tests |
+| FR-001 local persistence | admin/backend/src/db.js schema and persistence test |
+| FR-002 session authentication | admin/backend/src/app.js, salted scrypt hashes, auth tests |
 | FR-003 server roles | API guards, role tests, viewer browser flow |
 | FR-004 transaction integrity | integer thousandths, SQLite transactions, concurrency/rollback/count tests |
-| FR-005 dashboard | src/pages.tsx, actual database-derived balances/activity |
+| FR-005 dashboard | admin/frontend/src/pages.tsx, actual database-derived balances/activity |
 | FR-006 inventory and supplier workflows | rendered browser CRUD/search/filter/sort/pagination checks |
-| FR-007 Excel | server/spreadsheets.js, preview/confirm/export round trips |
+| FR-007 Excel | admin/backend/src/spreadsheets.js, preview/confirm/export round trips |
 | FR-008 reports and references | category valuation and immutable movement ledger, XLSX exports |
 | FR-009 requested UI | pinned reference, responsive captures, independent finish review |
 | FR-010 localhost only | loopback listeners, no hosted services/registration/deploy/push |

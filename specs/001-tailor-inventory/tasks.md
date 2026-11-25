@@ -10,17 +10,17 @@
 
 ## Phase 2: Foundation
 
-- [x] T004 Create SQLite schema, integer quantities/costs, realistic tailor-shop seed and hashed dummy accounts in server/db.js.
-- [x] T005 Implement session auth, write-origin checks, role guards, validation and error handling in server/app.js.
+- [x] T004 Create SQLite schema, integer quantities/costs, realistic tailor-shop seed and hashed dummy accounts in admin/backend/src/db.js.
+- [x] T005 Implement session auth, write-origin checks, role guards, validation and error handling in admin/backend/src/app.js.
 
 ## Phase 3: US1 — Inventory
 
-- [x] T006 Build responsive shell/login, dashboard, searchable/filterable/sortable inventory and material details in src/.
+- [x] T006 Build responsive shell/login, dashboard, searchable/filterable/sortable inventory and material details in admin/frontend/src/.
 
 ## Phase 4: US2 — Stock movement
 
-- [x] T007 Implement atomic receive/issue/reconcile and ledger API in server/app.js.
-- [x] T008 Connect movement drawer, references and low-stock actions in src/.
+- [x] T007 Implement atomic receive/issue/reconcile and ledger API in admin/backend/src/app.js.
+- [x] T008 Connect movement drawer, references and low-stock actions in admin/frontend/src/.
 
 ## Phase 5: US3 — Maintenance
 
@@ -28,7 +28,7 @@
 
 ## Phase 6: US4 — Excel and reporting
 
-- [x] T010 Implement Excel export, import template, preview and atomic confirmation in server/spreadsheets.js.
+- [x] T010 Implement Excel export, import template, preview and atomic confirmation in admin/backend/src/spreadsheets.js.
 - [x] T011 Connect reports, downloads and import review UI.
 
 ## Phase 7: Verification
@@ -40,4 +40,4 @@
 
 ## Phase 8: Convergence — source-dependent follow-up
 
-- [ ] T016 [Source-dependent] After the user provides the original Excel workbook, map its actual sheets/columns/formulas in data-model.md and contracts/api.md, then adapt server/spreadsheets.js and the material workflow to match. Do not infer the missing workbook's structure. This remains open while the verified provisional localhost demo is available.
+- [ ] T016 [Source-dependent] After the user provides the original Excel workbook, map its actual sheets/columns/formulas in data-model.md and contracts/api.md, then adapt admin/backend/src/spreadsheets.js and the material workflow to match. Do not infer the missing workbook's structure. This remains open while the verified provisional localhost demo is available.

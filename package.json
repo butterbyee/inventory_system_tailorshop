@@ -4,35 +4,15 @@
   "private": true,
   "type": "module",
   "engines": { "node": ">=24.13.0" },
+  "workspaces": ["admin/frontend", "admin/backend"],
   "scripts": {
     "dev": "node scripts/dev.mjs",
-    "dev:client": "vite --host 127.0.0.1",
-    "dev:server": "node --watch server/index.js",
-    "build": "vite build",
-    "start": "node server/index.js",
-    "test": "node --test --test-concurrency=1 tests/api.test.js",
-    "test:ui": "node tests/browser.mjs",
-    "check": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@fontsource-variable/geist": "^5.2.8",
-    "cookie-parser": "^1.4.7",
-    "exceljs": "^4.4.0",
-    "express": "^5.2.1",
-    "helmet": "^8.1.0",
-    "lucide-react": "^0.468.0",
-    "multer": "^2.0.2",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "zod": "^4.3.6"
-  },
-  "devDependencies": {
-    "@types/node": "^24.0.0",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.1.4",
-    "playwright": "^1.58.2",
-    "typescript": "^5.9.3",
-    "vite": "^7.3.1"
+    "dev:client": "npm run dev --workspace @thread-and-stock/frontend",
+    "dev:server": "npm run dev --workspace @thread-and-stock/backend",
+    "build": "npm run build --workspace @thread-and-stock/frontend",
+    "start": "npm run start --workspace @thread-and-stock/backend",
+    "test": "npm run test --workspace @thread-and-stock/backend",
+    "test:ui": "npm run test:ui --workspace @thread-and-stock/frontend",
+    "check": "npm run check --workspace @thread-and-stock/frontend"
   }
 }
