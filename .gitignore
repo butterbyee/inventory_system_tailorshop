@@ -9,6 +9,10 @@ data/
 .impeccable/questions/
 .impeccable/config.local.json
 .impeccable/live/
+others/.impeccable/review/
+others/.impeccable/questions/
+others/.impeccable/config.local.json
+others/.impeccable/live/
 test-results/
 *.sqlite
 *.sqlite-*

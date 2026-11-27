@@ -32,7 +32,8 @@ admin/backend/tests/ API integration and database tests
 admin/backend/data/  Ignored local SQLite runtime files
 docs/                Product context and design system
 scripts/dev.mjs      local frontend/backend launcher
-.specify/            official upstream templates/scripts and constitution
+others/.specify/     upstream templates/scripts adapted for this layout, and constitution
+others/.impeccable/  design metadata and ignored QA captures
 specs/001-tailor-inventory/ specification, plan, data model, contracts, tasks
 ```
 

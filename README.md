@@ -26,8 +26,9 @@ Inventory System/
 |-- docs/                     # Product context and design system
 |-- scripts/                  # Shared development launcher
 |-- specs/                    # Feature specifications and contracts
-|-- .specify/                 # Spec Kit configuration and templates
-|-- .impeccable/              # Design metadata and ignored QA captures
+|-- others/
+|   |-- .specify/             # Spec Kit configuration and templates
+|   `-- .impeccable/          # Design metadata and ignored QA captures
 |-- package.json              # Workspace commands
 |-- package-lock.json         # Shared dependency lockfile
 `-- README.md
@@ -133,14 +134,20 @@ Replace the example row and retain the headings. Upload `.xlsx` files up to 4 MB
 
 ## Spec Kit
 
-Official upstream templates, command definitions and PowerShell helpers are included under `.specify/`, with the upstream MIT license. Source: [github/spec-kit](https://github.com/github/spec-kit), commit `a55782f1f1e7f2469cb204843c05d1a42fa2fae7`.
+Official upstream templates, command definitions and PowerShell helpers are included under `others/.specify/`, with the upstream MIT license. Source: [github/spec-kit](https://github.com/github/spec-kit), commit `a55782f1f1e7f2469cb204843c05d1a42fa2fae7`.
+
+Local path references and repository-root discovery are adapted for the `others/` layout; Spec Kit command names remain unchanged. Run the prerequisite check from the repository root:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File others/.specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks
+```
 
 This environment did not have Python/uv/Specify CLI, so integration uses the official source templates/scripts directly, with project-specific constitution, specification, plan, tasks, data model, API contract and convergence record. It does not claim that `specify init` was run.
 
-- Constitution: `.specify/memory/constitution.md`
+- Constitution: `others/.specify/memory/constitution.md`
 - Feature artifacts: `specs/001-tailor-inventory/`
 - Product context: [`docs/PRODUCT.md`](docs/PRODUCT.md)
-- Built design system: [`docs/DESIGN.md`](docs/DESIGN.md) and `.impeccable/design.json`
+- Built design system: [`docs/DESIGN.md`](docs/DESIGN.md) and `others/.impeccable/design.json`
 
 The application source is self-contained. GitHub Spec Kit development references stay ignored under `.references/`.
 
@@ -153,4 +160,4 @@ npm.cmd run build
 npm.cmd run test:ui
 ```
 
-API tests use isolated databases, including temporary SQLite persistence checks. Browser tests use an in-memory database and installed Chrome; they do not touch the user's inventory. `CHROME_PATH` can override the browser executable for another machine. Build before browser tests because they verify the compiled app. Screenshots and browser reports are under `.impeccable/review/`; downloaded workbooks are under `admin/frontend/test-results/`. Both are ignored.
+API tests use isolated databases, including temporary SQLite persistence checks. Browser tests use an in-memory database and installed Chrome; they do not touch the user's inventory. `CHROME_PATH` can override the browser executable for another machine. Build before browser tests because they verify the compiled app. Screenshots and browser reports are under `others/.impeccable/review/`; downloaded workbooks are under `admin/frontend/test-results/`. Both are ignored.

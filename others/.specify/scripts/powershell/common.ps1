@@ -2,7 +2,7 @@
 # Common PowerShell functions analogous to common.sh
 
 
-# Find repository root by searching upward for .specify directory
+# Find repository root by searching upward for others/.specify directory
 # This is the primary marker for spec-kit projects
 function Find-SpecifyRoot {
     param([string]$StartDir = (Get-Location).Path)
@@ -14,7 +14,7 @@ function Find-SpecifyRoot {
     if (-not $current) { return $null }
 
     while ($true) {
-        if (Test-Path -LiteralPath (Join-Path $current ".specify") -PathType Container) {
+        if (Test-Path -LiteralPath (Join-Path $current "others/.specify") -PathType Container) {
             return $current
         }
         $parent = Split-Path $current -Parent
@@ -26,13 +26,13 @@ function Find-SpecifyRoot {
 }
 
 # Resolve an explicit SPECIFY_INIT_DIR project override (the directory that
-# *contains* .specify/), for non-interactive / CI use -- e.g. running a Spec Kit
+# *contains* others/.specify/), for non-interactive / CI use -- e.g. running a Spec Kit
 # command against a member project from a monorepo root without cd.
 #
 # Precondition: $env:SPECIFY_INIT_DIR is set. Returns the validated project root,
 # or writes an error and exits 1 unless -ReturnNullOnError is set. Strict by
 # design: the path must exist and
-# contain .specify/, with no silent fallback. (An empty string is falsy, so the
+# contain others/.specify/, with no silent fallback. (An empty string is falsy, so the
 # caller's `if ($env:SPECIFY_INIT_DIR)` guard treats empty as unset.)
 #
 # This is the single resolver: bundled extensions inherit it by sourcing core
@@ -67,15 +67,15 @@ function Resolve-SpecifyInitDir {
     if ($initRoot.Length -lt [System.IO.Path]::GetPathRoot($resolved.Path).Length) {
         $initRoot = $resolved.Path
     }
-    if (-not (Test-Path -LiteralPath (Join-Path $initRoot '.specify') -PathType Container)) {
-        [Console]::Error.WriteLine("ERROR: SPECIFY_INIT_DIR is not a Spec Kit project (no .specify/ directory): $initRoot")
+    if (-not (Test-Path -LiteralPath (Join-Path $initRoot 'others/.specify') -PathType Container)) {
+        [Console]::Error.WriteLine("ERROR: SPECIFY_INIT_DIR is not a Spec Kit project (no others/.specify/ directory): $initRoot")
         if ($ReturnNullOnError) { return $null }
         exit 1
     }
     return $initRoot
 }
 
-# Get repository root, prioritizing .specify directory
+# Get repository root, prioritizing others/.specify directory
 # This prevents using a parent repository when spec-kit is initialized in a subdirectory
 function Get-RepoRoot {
     param([switch]$ReturnNullOnError)
@@ -85,7 +85,7 @@ function Get-RepoRoot {
         return (Resolve-SpecifyInitDir -ReturnNullOnError:$ReturnNullOnError)
     }
 
-    # First, look for .specify directory (spec-kit's own marker)
+    # First, look for others/.specify directory (spec-kit's own marker)
     $specifyRoot = Find-SpecifyRoot
     if ($specifyRoot) {
         return $specifyRoot
@@ -93,13 +93,13 @@ function Get-RepoRoot {
 
     # Final fallback to script location
     # Use -LiteralPath to handle paths with wildcard characters
-    return (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "../../..")).Path
+    return (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "../../../..")).Path
 }
 
 function Get-CurrentBranch {
     # Return feature name from explicit state only.
     # Feature state is set by SPECIFY_FEATURE (from create-new-feature or
-    # the git extension) or implicitly via .specify/feature.json.
+    # the git extension) or implicitly via others/.specify/feature.json.
     if ($env:SPECIFY_FEATURE) {
         return $env:SPECIFY_FEATURE
     }
@@ -110,7 +110,7 @@ function Get-CurrentBranch {
 
 
 
-# Persist a feature_directory value to .specify/feature.json.
+# Persist a feature_directory value to others/.specify/feature.json.
 # Writes only when the file is missing or the value differs from what's stored.
 function Save-FeatureJson {
     param(
@@ -131,7 +131,7 @@ function Save-FeatureJson {
         $FeatureDirectory = $FeatureDirectory.Substring($prefix.Length)
     }
 
-    $fjPath = Join-Path (Join-Path $RepoRoot '.specify') 'feature.json'
+    $fjPath = Join-Path (Join-Path $RepoRoot 'others/.specify') 'feature.json'
 
     # Read current value and skip write when unchanged
     if (Test-Path -LiteralPath $fjPath -PathType Leaf) {
@@ -146,8 +146,8 @@ function Save-FeatureJson {
         }
     }
 
-    # Ensure .specify/ directory exists
-    $specifyDir = Join-Path $RepoRoot '.specify'
+    # Ensure others/.specify/ directory exists
+    $specifyDir = Join-Path $RepoRoot 'others/.specify'
     if (-not (Test-Path -LiteralPath $specifyDir -PathType Container)) {
         New-Item -ItemType Directory -Path $specifyDir -Force | Out-Null
     }
@@ -160,7 +160,7 @@ function Save-FeatureJson {
 
 function Get-FeaturePathsEnv {
     # Read-only callers (e.g. check-prerequisites.ps1 -PathsOnly) pass -NoPersist
-    # so pure path resolution never writes .specify/feature.json, which would
+    # so pure path resolution never writes others/.specify/feature.json, which would
     # dirty the working tree or overwrite a pinned value (issue #3025).
     param(
         [switch]$NoPersist,
@@ -169,7 +169,7 @@ function Get-FeaturePathsEnv {
 
     # SPECIFY_FEATURE_NO_PERSIST is the environment-level equivalent of -NoPersist,
     # letting an orchestrator (multi-agent runner, CI matrix) guarantee that no
-    # script invocation in the process tree writes .specify/feature.json, even
+    # script invocation in the process tree writes others/.specify/feature.json, even
     # scripts that don't pass -NoPersist themselves (#4128).
     $noPersist = [bool]$NoPersist -or $env:SPECIFY_FEATURE_NO_PERSIST -eq '1' -or $env:SPECIFY_FEATURE_NO_PERSIST -eq 'true'
 
@@ -179,9 +179,9 @@ function Get-FeaturePathsEnv {
 
     # Resolve feature directory.  Priority:
     #   1. SPECIFY_FEATURE_DIRECTORY env var (explicit override)
-    #   2. .specify/feature.json "feature_directory" key (persisted by specify command)
+    #   2. others/.specify/feature.json "feature_directory" key (persisted by specify command)
     #   3. Error - no feature context available
-    $featureJson = Join-Path $repoRoot '.specify/feature.json'
+    $featureJson = Join-Path $repoRoot 'others/.specify/feature.json'
     if ($env:SPECIFY_FEATURE_DIRECTORY) {
         $featureDir = $env:SPECIFY_FEATURE_DIRECTORY
         # Normalize relative paths to absolute under repo root
@@ -198,7 +198,7 @@ function Get-FeaturePathsEnv {
         try {
             $featureConfig = $featureJsonRaw | ConvertFrom-Json
         } catch {
-            [Console]::Error.WriteLine("ERROR: Feature directory not found. Set SPECIFY_FEATURE_DIRECTORY or ensure .specify/feature.json contains feature_directory.")
+            [Console]::Error.WriteLine("ERROR: Feature directory not found. Set SPECIFY_FEATURE_DIRECTORY or ensure others/.specify/feature.json contains feature_directory.")
             if ($ReturnNullOnError) { return $null }
             exit 1
         }
@@ -209,12 +209,12 @@ function Get-FeaturePathsEnv {
                 $featureDir = Join-Path $repoRoot $featureDir
             }
         } else {
-            [Console]::Error.WriteLine("ERROR: Feature directory not found. Set SPECIFY_FEATURE_DIRECTORY or ensure .specify/feature.json contains feature_directory.")
+            [Console]::Error.WriteLine("ERROR: Feature directory not found. Set SPECIFY_FEATURE_DIRECTORY or ensure others/.specify/feature.json contains feature_directory.")
             if ($ReturnNullOnError) { return $null }
             exit 1
         }
     } else {
-        [Console]::Error.WriteLine("ERROR: Feature directory not found. Set SPECIFY_FEATURE_DIRECTORY or run the specify command to create .specify/feature.json.")
+        [Console]::Error.WriteLine("ERROR: Feature directory not found. Set SPECIFY_FEATURE_DIRECTORY or run the specify command to create others/.specify/feature.json.")
         if ($ReturnNullOnError) { return $null }
         exit 1
     }
@@ -290,7 +290,7 @@ function Get-InvokeSeparator {
     }
 
     $separator = '.'
-    $integrationJson = Join-Path $RepoRoot '.specify/integration.json'
+    $integrationJson = Join-Path $RepoRoot 'others/.specify/integration.json'
     if (Test-Path -LiteralPath $integrationJson -PathType Leaf) {
         try {
             $state = Get-Content -LiteralPath $integrationJson -Raw | ConvertFrom-Json
@@ -433,10 +433,10 @@ function Get-SortedExtensionIds {
 }
 
 # Resolve a template name to a file path using the priority stack:
-#   1. .specify/templates/overrides/
-#   2. .specify/presets/<preset-id>/templates/ (sorted by priority from .registry)
-#   3. .specify/extensions/<ext-id>/templates/
-#   4. .specify/templates/ (core)
+#   1. others/.specify/templates/overrides/
+#   2. others/.specify/presets/<preset-id>/templates/ (sorted by priority from .registry)
+#   3. others/.specify/extensions/<ext-id>/templates/
+#   4. others/.specify/templates/ (core)
 function Resolve-Template {
     param(
         [Parameter(Mandatory=$true)][string]$TemplateName,
@@ -445,14 +445,14 @@ function Resolve-Template {
 
     if ($TemplateName -cnotmatch '^[a-z0-9-]+$') { return $null }
 
-    $base = Join-Path $RepoRoot '.specify/templates'
+    $base = Join-Path $RepoRoot 'others/.specify/templates'
 
     # Priority 1: Project overrides
     $override = Join-Path $base "overrides/$TemplateName.md"
     if (Test-Path -LiteralPath $override) { return $override }
 
     # Priority 2: Installed presets (sorted by priority from .registry)
-    $presetsDir = Join-Path $RepoRoot '.specify/presets'
+    $presetsDir = Join-Path $RepoRoot 'others/.specify/presets'
     if (Test-Path -LiteralPath $presetsDir) {
         $registryFile = Join-Path $presetsDir '.registry'
         $sortedPresets = @()
@@ -515,7 +515,7 @@ function Resolve-Template {
     }
 
     # Priority 3: Extension-provided templates
-    $extDir = Join-Path $RepoRoot '.specify/extensions'
+    $extDir = Join-Path $RepoRoot 'others/.specify/extensions'
     if (Test-Path -LiteralPath $extDir) {
         foreach ($extensionId in Get-SortedExtensionIds -ExtensionsDir $extDir) {
             $candidate = Join-Path $extDir "$extensionId/templates/$TemplateName.md"
@@ -546,7 +546,7 @@ function Resolve-TemplateContent {
         return $null
     }
 
-    $base = Join-Path $RepoRoot '.specify/templates'
+    $base = Join-Path $RepoRoot 'others/.specify/templates'
 
     # Collect all layers (highest priority first)
     $layerPaths = @()
@@ -570,7 +570,7 @@ function Resolve-TemplateContent {
     $effectiveBaseFound = $false
 
     # Priority 2: Installed presets (sorted by priority from .registry)
-    $presetsDir = Join-Path $RepoRoot '.specify/presets'
+    $presetsDir = Join-Path $RepoRoot 'others/.specify/presets'
     if (Test-Path -LiteralPath $presetsDir) {
         $registryFile = Join-Path $presetsDir '.registry'
         $sortedPresets = @()
@@ -760,7 +760,7 @@ except Exception as exc:
     }
 
     # Priority 3: Extension-provided templates (always "replace")
-    $extDir = Join-Path $RepoRoot '.specify/extensions'
+    $extDir = Join-Path $RepoRoot 'others/.specify/extensions'
     if (-not $effectiveBaseFound -and (Test-Path -LiteralPath $extDir)) {
         foreach ($extensionId in Get-SortedExtensionIds -ExtensionsDir $extDir) {
             $candidate = Join-Path $extDir "$extensionId/templates/$TemplateName.md"

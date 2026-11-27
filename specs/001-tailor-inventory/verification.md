@@ -2,6 +2,18 @@
 
 Date: 2026-11-24. Scope: provisional local application; original workbook mapping remains pending receipt of the source file.
 
+## Metadata relocation repair — 2026-11-28
+
+Moving the tooling folders into `others/` caused Spec Kit to resolve the feature as `others/specs/001-tailor-inventory`. Repository discovery, metadata paths, command templates and documentation now use `others/.specify/` while feature artifacts remain under the repository's `specs/`. Browser QA reports now use `others/.impeccable/review/`, and the relocated reports, captures and local configuration remain ignored.
+
+- The prerequisite helper passed with tasks required and included.
+- Repository and feature paths resolved from the frontend, relocated metadata directory and an unrelated working directory. All four core templates resolved, and all PowerShell helpers parsed successfully.
+- Ignore checks passed for relocated QA artifacts, local configuration, database files, compiled assets and browser downloads.
+- TypeScript validation, the production build and all 10 API/database tests passed.
+- All desktop and mobile browser workflows passed with no browser JavaScript errors.
+
+The Git ownership error was resolved locally by trusting this specific repository. Source publication to GitHub is authorized; the application remains hosted locally.
+
 ## Folder reorganization — 2026-11-25
 
 The application now uses `admin/frontend` and `admin/backend` npm workspaces, following the reference repository's web application layout. Product and design documents are in `docs/`. Root development, build, start, type-check and test commands delegate to the appropriate workspace.
@@ -19,7 +31,7 @@ The application now uses `admin/frontend` and `admin/backend` npm workspaces, fo
 - `npm.cmd run build`: passed Vite production build.
 - `npm.cmd test`: 10 integration tests passed. Covers session authentication/revocation, password/token non-disclosure, roles/origins, fractional precision, overdraft rollback, whole-number units, ledger-only balance changes, stale counts, simultaneous issues, unique keys, supplier links, account creation, XLSX preview/confirm/export, invalid-workbook rollback, and SQLite restart persistence.
 - `npm.cmd run test:ui`: passed installed-Chrome workflows at desktop 1440×1000 and mobile 390×844. Covers all six routes, no page-level overflow, search/empty state, category/status filters, sorting/pagination, material creation/editing, live decimal issue preview and save, supplier and account creation, template download/upload/preview/confirm/export, mobile menu, Escape dismissal, viewer write-control restrictions, and no browser JavaScript errors.
-- Official Spec Kit PowerShell prerequisite helper: passed with `.specify/feature.json` pointing to this feature; specification, plan, tasks, research, data model, contracts and quickstart found.
+- Official Spec Kit PowerShell prerequisite helper: passed with `others/.specify/feature.json` pointing to this feature; specification, plan, tasks, research, data model, contracts and quickstart found.
 
 Tests use isolated databases. Browser tests never open the user's local database. The live development app was separately checked: frontend http://localhost:5173 returned HTTP 200 and backend /api/health returned local SQLite health.
 
@@ -29,7 +41,7 @@ The impeccable detector ran once across all five UI source targets. It reported 
 
 The independent initial review examined 17 valid desktop/mobile and interaction captures. A single correction batch fixed narrow-chart date collisions, moved the login demo disclosure to the account/status area, raised three small-text contrast pairs, and repaired design provenance. The reviewer scored all four fixes resolved, disposition `ship` for the four scored fixes. Corrected contrast pairs measured 5.28:1, 5.27:1 and 5.67:1. The final verdict does not claim an exhaustive security or accessibility audit.
 
-QA captures and reports are ignored under `.impeccable/review/`. There are no shipping raster assets; icons and the spool mark are crisp SVG geometry, and typography is self-hosted.
+QA captures and reports are ignored under `others/.impeccable/review/`. There are no shipping raster assets; icons and the spool mark are crisp SVG geometry, and typography is self-hosted.
 
 ## Requirements trace
 

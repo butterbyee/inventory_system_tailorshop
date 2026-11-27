@@ -9,7 +9,7 @@ import ExcelJS from 'exceljs';
 const {app,db}=createApp({databasePath:':memory:'});
 const server=app.listen(0,'127.0.0.1');await new Promise(resolve=>server.once('listening',resolve));
 const base=`http://127.0.0.1:${server.address().port}`;
-const reviewDirectory=fileURLToPath(new URL('../../../.impeccable/review/',import.meta.url));
+const reviewDirectory=fileURLToPath(new URL('../../../others/.impeccable/review/',import.meta.url));
 const resultsDirectory=fileURLToPath(new URL('../test-results/',import.meta.url));
 mkdirSync(reviewDirectory,{recursive:true});
 mkdirSync(resultsDirectory,{recursive:true});

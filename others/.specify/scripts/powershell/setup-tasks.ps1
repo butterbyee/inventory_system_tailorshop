@@ -60,7 +60,7 @@ $tasksTemplate = Resolve-Template -TemplateName 'tasks-template' -RepoRoot $path
 $tasksTemplateContent = Resolve-TemplateContent -TemplateName 'tasks-template' -RepoRoot $paths.REPO_ROOT
 if ($null -eq $tasksTemplateContent) {
     [Console]::Error.WriteLine("ERROR: Could not resolve required tasks-template from the template override stack for $($paths.REPO_ROOT)")
-    [Console]::Error.WriteLine("Template 'tasks-template' was not found in any supported location (overrides, presets, extensions, or shared core). Add an override at .specify/templates/overrides/tasks-template.md, or run 'specify init' / reinstall shared infra to restore the core .specify/templates/tasks-template.md template.")
+    [Console]::Error.WriteLine("Template 'tasks-template' was not found in any supported location (overrides, presets, extensions, or shared core). Add an override at others/.specify/templates/overrides/tasks-template.md, or run 'specify init' / reinstall shared infra to restore the core others/.specify/templates/tasks-template.md template.")
     exit 1
 }
 if ($tasksTemplate -and (Test-Path -LiteralPath $tasksTemplate -PathType Leaf)) {
